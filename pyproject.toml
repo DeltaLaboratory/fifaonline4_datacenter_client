@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "fifaonline4_datacenter_client"
+version = "0.1.0"
+description = ""
+authors = ["DeltaLaboratory <delta@deltalab.dev>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+httpx = "^0.19.0"
+beautifulsoup4 = "^4.10.0"
+wheel = "^0.37.0"
+lxml = { file = "wheel/lxml-4.6.3-cp310-cp310-win_amd64.whl" }
+
+[tool.poetry.dev-dependencies]
+ipython = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
