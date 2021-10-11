@@ -8,6 +8,8 @@ from . import model as _model
 from .statics import URL as _URL
 from .statics import USER_AGENT as _USER_AGENT
 
+_BP_TRIM_TABLE = str.maketrans({"BP": None, ",": None})
+
 
 class Client:
     def __init__(self) -> None:
@@ -30,8 +32,24 @@ class Client:
             , features="lxml")
         return _model.Player(
             price=int(
-                parser.select("body > div.header > div.add_info > div > strong ")[0].string.strip()
-                    .replace("BP", "")
-                    .replace(",", "")
+                parser.select(
+                    "body > div.header > div.add_info > div > strong")[0]
+                    .string
+                    .strip()
+                    .translate(_BP_TRIM_TABLE)
+            ),
+            min_price=int(
+                parser.select(
+                    "body > div.content.data_detail_price > div.data_header > div > ul > li:nth-child(1) > strong")[0]
+                    .string
+                    .strip()
+                    .translate(_BP_TRIM_TABLE)
+            ),
+            max_price=int(
+                parser.select(
+                    "body > div.content.data_detail_price > div.data_header > div > ul > li:nth-child(2) > strong")[0]
+                    .string
+                    .strip()
+                    .translate(_BP_TRIM_TABLE)
             )
         )
