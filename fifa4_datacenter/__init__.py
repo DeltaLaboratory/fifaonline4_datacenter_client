@@ -1,4 +1,3 @@
-import random
 import random as _random
 
 import httpx as _httpx
@@ -8,7 +7,7 @@ from . import model as _model
 from .statics import URL as _URL
 from .statics import USER_AGENT as _USER_AGENT
 
-_BP_TRIM_TABLE = str.maketrans({"BP": None, ",": None})
+_BP_TRIM_TABLE = str.maketrans({"B": None, "P": None, ",": None})
 
 
 class Client:
@@ -26,7 +25,7 @@ class Client:
                 data={
                     "spid": spid,
                     "n1strong": 1,
-                    "rd": f"{random.random()}"
+                    "rd": f"{_random.random()}"
                 }
             )).text
             , features="lxml")
